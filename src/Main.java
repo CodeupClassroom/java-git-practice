@@ -9,4 +9,7 @@ public class Main {
         // in "Project Structure" define a folder for compiled classes called "out" just inside your project root folder
     // TODO: add and commit your code and push your branch up to GitHub
 
+    public static void main(String[] args) {
+        System.out.println("Matthew Brozusky");
+    }
 }
