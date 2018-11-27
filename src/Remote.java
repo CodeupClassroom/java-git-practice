@@ -19,9 +19,9 @@ public abstract class Remote implements ChannelAdjustable, VolumeAdjustable {
 
 
     public void setCurrentVolume(int currentVolume) {
-        this.currentVolume += currentVolume;
+        this.currentVolume = currentVolume;
     }
     public void setCurrentChannel(int currentChannel) {
-        this.currentChannel += currentChannel;
+        this.currentChannel = currentChannel;
     }
 }

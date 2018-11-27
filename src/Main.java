@@ -16,6 +16,13 @@ public class Main {
             e.printStackTrace();
         }
 
+        try {
+            test.goToChannel(3);
+            System.out.println(test.getCurrentChannel());
+        } catch (ChannelOutOfBoundsException e) {
+            e.printStackTrace();
+        }
+
         test.volumeUp();
         System.out.println(test.getCurrentVolume());
         test.volumeDown();
