@@ -5,37 +5,24 @@ public class TelevisionRemote extends Remote {
     private HashMap<String, Integer> minMaxVolume;
     private HashMap<String, Integer> minMaxChannel;
 
-    private int minVolume;
-    private int maxVolume;
-    private int minChannel;
-    private int maxChannel;
-    private int initialChannel;
-    private int initialVolume;
-
     private int currentChannel;
     private int currentVolume;
 
     TelevisionRemote(int minVolume, int maxVolume, int minChannel, int maxChannel, int initialChannel, int initialVolume) {
 
-        this.minVolume = minVolume;
-        this.maxVolume = maxVolume;
-        this.minChannel = minChannel;
-        this.maxChannel = maxChannel;
-        this.initialChannel = initialChannel;
-        this.initialVolume = initialVolume;
         this.currentChannel = initialChannel;
         this.currentVolume = initialVolume;
-        String stringedMinChan = "" + minChannel;
-        String stringedMinVol = "" + minVolume;
         this.minMaxChannel = new HashMap<>();
         this.minMaxVolume = new HashMap<>();
-        this.minMaxChannel.put(stringedMinChan, maxChannel);
-        this.minMaxVolume.put(stringedMinVol, maxVolume);
+        this.minMaxChannel.put("min", minChannel);
+        this.minMaxChannel.put("max", maxChannel);
+        this.minMaxVolume.put("min", minVolume);
+        this.minMaxVolume.put("max", maxVolume);
     }
 
     @Override
     public void channelUp() {
-        if (this.maxChannel > currentChannel){
+        if (minMaxChannel.get("max") > currentChannel){
             currentChannel++;
         } else {
             System.out.println("Current channel is at maximum.");
@@ -44,7 +31,7 @@ public class TelevisionRemote extends Remote {
 
     @Override
     public void channelDown() {
-        if (this.minChannel < currentChannel) {
+        if (minMaxChannel.get("min") < currentChannel) {
             currentChannel--;
         } else {
             System.out.println("Current channel is at minimum.");
@@ -56,7 +43,7 @@ public class TelevisionRemote extends Remote {
         Scanner sc = new Scanner(System.in);
         int proposedChannel = sc.nextInt();
         if (proposedChannel != currentChannel) {
-            if (proposedChannel > minChannel && proposedChannel < maxChannel) {
+            if (proposedChannel > minMaxChannel.get("min") && proposedChannel < minMaxChannel.get("max")) {
                 currentChannel = proposedChannel;
             } else {
                 ChannelOutOfBoundsException bill = new ChannelOutOfBoundsException("Channel out of range");
@@ -74,7 +61,7 @@ public class TelevisionRemote extends Remote {
 
     @Override
     public void volumeUp() {
-        if (this.maxVolume > currentVolume){
+        if (minMaxVolume.get("max") > currentVolume){
             currentVolume++;
         } else {
             System.out.println("Current volume is at maximum.");
@@ -83,7 +70,7 @@ public class TelevisionRemote extends Remote {
 
     @Override
     public void volumeDown() {
-        if (this.minVolume < currentVolume){
+        if (minMaxVolume.get("min") < currentVolume){
             currentVolume--;
         } else {
             System.out.println("Current volume is at minimum.");
