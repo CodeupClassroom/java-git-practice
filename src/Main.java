@@ -1,15 +1,30 @@
 public class Main {
 
-    // TODO: create a named branch named after your firstname-lastname (e.g. justin-reich)
-    // TODO: add a main method and sout out your name
-    // TODO: configure your IDE appropriately to run the main method...
-        // right click on the src folder and mark it as the sources root
-        // click cmd + ; to open the "Project Structure" menu
-        // in "Project Structure" select a Java SDK version
-        // in "Project Structure" define a folder for compiled classes called "out" just inside your project root folder
-    // TODO: add and commit your code and push your branch up to GitHub
-
     public static void main(String[] args) {
-        System.out.println("Matthew Brozusky");
+        TelevisionRemote test = new TelevisionRemote(1, 10, 1, 15, 6, 8);
+
+
+        try {
+            test.goToChannel(16);
+        } catch (ChannelOutOfBoundsException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            test.goToChannel(0);
+        } catch (ChannelOutOfBoundsException e) {
+            e.printStackTrace();
+        }
+
+        test.volumeUp();
+        System.out.println(test.getCurrentVolume());
+        test.volumeDown();
+        System.out.println(test.getCurrentVolume());
+
+        test.channelUp();
+        System.out.println(test.getCurrentChannel());
+        test.channelDown();
+        System.out.println(test.getCurrentChannel());
+
     }
 }
