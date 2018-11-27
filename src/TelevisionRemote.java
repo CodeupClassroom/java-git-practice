@@ -1,17 +1,8 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class TelevisionRemote extends Remote {
-
-    public static void main(String[] args) {
-        TelevisionRemote tr = new TelevisionRemote(1, 3, 1, 3, 1, 7);
-        try {
-            tr.goToChannel(11);
-        } catch (ChannelOutOfBoundsException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(tr.getCurrentChannel());
-    }
 
     private HashMap<String, Integer> minMaxVolume;
     private HashMap<String, Integer> minMaxChannel;
@@ -66,5 +57,43 @@ public class TelevisionRemote extends Remote {
         }
     }
 
+    /*
+    Java II Review BONUS
+
+Create a static method on the Main class called turnUp11Times that takes in a list of VolumeControllable objects and increases the volume 11 times for each TelevisionRemote object. Depending on the volume range, some objects may max out volume early while others may stop on 12 (if starting at volume level 1).
+     */
+
+    public static void turnUp11Times(List<VolumeAdjustable> adjustables) {
+        for (VolumeAdjustable va : adjustables) {
+            for (int i = 1; i <= 11; i++) {
+                va.volumeUp();
+            }
+        }
+    }
+
+
+    // MAIN FOR TESTING BONUS
+    public static void main(String[] args) {
+        VolumeAdjustable tr1 = new TelevisionRemote(1, 1, 1, 20, 1, 3);
+        VolumeAdjustable tr2 = new TelevisionRemote(1, 1, 1, 12, 1, 3);
+        VolumeAdjustable tr3 = new TelevisionRemote(1, 1, 1, 5, 1, 3);
+
+        List<VolumeAdjustable> adjustables = new ArrayList<>();
+        adjustables.add(tr1);
+        adjustables.add(tr2);
+        adjustables.add(tr3);
+
+        turnUp11Times(adjustables);
+
+        TelevisionRemote testingRemoteObject1 = (TelevisionRemote) adjustables.get(0);
+        System.out.println(testingRemoteObject1.getCurrentVolume()); // expect 12
+
+        TelevisionRemote testingRemoteObject2 = (TelevisionRemote) adjustables.get(1);
+        System.out.println(testingRemoteObject2.getCurrentVolume()); // expect 12
+
+        TelevisionRemote testingRemoteObject3 = (TelevisionRemote) adjustables.get(2);
+        System.out.println(testingRemoteObject3.getCurrentVolume()); // expect 5
+
+    }
 
 }
