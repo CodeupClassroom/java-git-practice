@@ -1,12 +1,27 @@
 public class Main {
+    public static void main(String[] args) {
+        Remote teleRemote = new TelevisionRemote(1,10, 1, 20, 3, 4);
+        teleRemote.channelDown();
+        System.out.println(teleRemote.getChannel());
+        teleRemote.channelUp();
+        teleRemote.channelUp();
+        System.out.println(teleRemote.getChannel());
 
-    // TODO: create a named branch named after your firstname-lastname (e.g. justin-reich)
-    // TODO: add a main method and sout out your name
-    // TODO: configure your IDE appropriately to run the main method...
-        // right click on the src folder and mark it as the sources root
-        // click cmd + ; to open the "Project Structure" menu
-        // in "Project Structure" select a Java SDK version
-        // in "Project Structure" define a folder for compiled classes called "out" just inside your project root folder
-    // TODO: add and commit your code and push your branch up to GitHub
+        System.out.println(teleRemote.getVolume());
+        teleRemote.volumeDown();
+        System.out.println(teleRemote.getVolume());
+        teleRemote.volumeUp();
+        teleRemote.volumeUp();
+        System.out.println(teleRemote.getVolume());
+
+        try {
+            teleRemote.goToChannel(70);
+        } catch (ChannelOutOfBoundsException e) {
+            e.printStackTrace();
+        }
+        System.out.println(teleRemote.getChannel());
+
+    }
+
 
 }
