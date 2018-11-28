@@ -5,7 +5,7 @@ public class TelevisionRemote extends Remote {
     public static void main( String[] args ) {
         TelevisionRemote tvRemote = new TelevisionRemote(1, 3, 1, 3, 1, 10);
         try {
-            tvRemote.goToChannel(10);
+            tvRemote.goToChannel(9);
         } catch (ChannelOutOfBoundsException e) {
             e.printStackTrace();
         }
@@ -43,7 +43,7 @@ public class TelevisionRemote extends Remote {
 
     @Override
     public void goToChannel( int channelNumber ) throws ChannelOutOfBoundsException {
-        if (channelNumber <= this.minMaxChannel.get("max") && channelNumber >= this.minMaxChannel.get("max")){
+        if (channelNumber <= this.minMaxChannel.get("max") && channelNumber >= this.minMaxChannel.get("min")){
             this.setCurrentChannel(channelNumber);
         } else {
             throw new ChannelOutOfBoundsException("Oops, you are out of bounds");
