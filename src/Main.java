@@ -1,5 +1,9 @@
 public class Main {
 
+    public static void main(String[] args) {
+        System.out.println("hello");
+    }
+
     // TODO: create a named branch named after your firstname-lastname (e.g. justin-reich)
     // TODO: add a main method and sout out your name
     // TODO: configure your IDE appropriately to run the main method...
